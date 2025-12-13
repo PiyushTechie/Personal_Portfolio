@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 80" fill="none" role="img" aria-label="PIYUSH Logo">
+  <g stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M25 50V15H38C49 15 49 38 38 38H25"/>
+    <path d="M70 15V50"/>
+    <path d="M95 15L115 38L135 15 M115 38V50"/>
+    <path d="M160 15V38C160 45 165 50 175 50C185 50 190 45 190 38V15"/>
+    <path d="M225 15C215 15 215 22 215 26C215 36 240 30 240 39C240 45 235 50 225 50"/>
+    <path d="M265 15V50 M305 15V50 M265 32.5H305"/>
+  </g>
+
+  <circle cx="25" cy="70" r="4" fill="#0ea5e9"/>
+  <path d="M35 70H305" stroke="#0ea5e9" stroke-width="4" stroke-linecap="round"/>
+</svg>

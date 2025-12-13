@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" role="img" aria-label="Piyush Prajapati Logo">
+  <circle cx="50" cy="50" r="50" fill="#09090b" /> {/* Background circle matching site bg */}
+  <path d="M36 25H54C63.9411 25 72 33.0589 72 43C72 52.9411 63.9411 61 54 61H44V75H36V25Z" fill="#ffffff"/>
+  <path d="M28 39H46C55.9411 39 64 47.0589 64 57C64 66.9411 55.9411 75 46 75H36V89H28V39Z" fill="#0ea5e9"/> {/* Sky blue accent */}
+</svg>
