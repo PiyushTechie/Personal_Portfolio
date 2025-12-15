@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Mail, Heart, ArrowUp, Instagram } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, ArrowUp, Instagram } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -17,9 +17,8 @@ const Footer = () => {
   const socialLinks = [
     { name: "GitHub", icon: Github, href: "https://github.com/PiyushTechie", color: "hover:text-gray-400" },
     { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/piyushprajapati1336", color: "hover:text-blue-400" },
-    { name: "Email", icon: Mail, href: "mailto:your.email@example.com", color: "hover:text-white-900" },
+    { name: "Email", icon: Mail, href: "mailto:piyushprajapati7120@gmail.com", color: "hover:text-white-900" },
     { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/piyush_prajapati004/", color: "hover:text-red-400" },
-
   ];
 
   return (
@@ -33,14 +32,9 @@ const Footer = () => {
           
           {/* Brand Section */}
           <div className="flex flex-col items-center md:items-start gap-3">
-            {/* New SVG Logo */}
-<a
-  href="/"
-  className="relative z-10 mr-0 md:mr-8 flex items-center"
->
-  {/* Adjust w-12 h-12 depending on which logo you pick */}
-  <img src="/logo1.svg" alt="Piyush Logo" className="w-36 md:w-44 h-auto hover:scale-105 transition-transform"/>
-</a>
+            <a href="/" className="relative z-10 mr-0 md:mr-8 flex items-center">
+              <img src="/logo1.svg" alt="Piyush Logo" className="w-36 md:w-44 h-auto hover:scale-105 transition-transform"/>
+            </a>
             <p className="text-zinc-300 text-sm max-w-xs text-center md:text-left">
               Building digital experiences that make a difference.
             </p>
@@ -52,7 +46,7 @@ const Footer = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-zinc-300 text-s hover:text-sky-400 transition-colors duration-300"
+                className="text-zinc-300 text-sm hover:text-sky-400 transition-colors duration-300"
               >
                 {link.name}
               </a>
@@ -65,6 +59,7 @@ const Footer = () => {
             <span className="text-green-400 text-xs font-medium">Available for work</span>
           </div>
 
+          {/* Social Links */}
           <div className="flex gap-3">
             {socialLinks.map((social) => {
               const Icon = social.icon;
@@ -73,6 +68,8 @@ const Footer = () => {
                   key={social.name}
                   href={social.href}
                   aria-label={social.name}
+                  target="_blank" 
+                  rel="noopener noreferrer"
                   className={`w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-lg flex items-center justify-center text-zinc-300 transition-all duration-300 hover:scale-110 hover:border-zinc-700 ${social.color}`}
                 >
                   <Icon size={18} />
@@ -96,22 +93,24 @@ const Footer = () => {
             <a href="mailto:piyushprajapati7120@gmail.com" className="hover:text-sky-400 transition-colors">
               piyushprajapati7120@gmail.com
             </a>
-            <span>•</span>
-            <span>Mumbai, Maharashtra, India</span>
+            <span className="hidden md:inline">•</span>
+            <span className="hidden md:inline">Mumbai, Maharashtra, India</span>
           </div>
           
           <div className="flex items-center gap-6">
-            <a href="#" className="text-zinc-400 hover:text-sky-400 transition-colors">
-              Privacy
-            </a>
-            <a href="#" className="text-zinc-400 hover:text-sky-400 transition-colors">
-              Terms
-            </a>
+            
+            {/* 👇 UPDATE THIS SECTION IN YOUR FOOTER */}
+          <div className="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity" title="Total Portfolio Views">
+            <img 
+              src="https://hits.sh/piyush-prajapati.vercel.app.svg?style=flat-square&label=Views&extraCount=0&color=0ea5e9&labelColor=18181b" 
+              alt="Page Views"
+              className="h-5 w-auto rounded" 
+            />
+          </div>
           </div>
         </div>
       </div>
 
-      
       <button
         onClick={scrollToTop}
         className="fixed bottom-8 right-8 w-12 h-12 bg-sky-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-sky-500/30 hover:bg-sky-600 hover:scale-110 transition-all duration-300 z-50 group"

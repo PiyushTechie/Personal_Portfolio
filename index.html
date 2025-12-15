@@ -2,6 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta
+  http-equiv="Content-Security-Policy"
+  content="
+    default-src 'self';
+    img-src 'self' https: data:;
+    script-src 'self';
+    style-src 'self' 'unsafe-inline';
+    connect-src
+      'self'
+      http://localhost:5173
+      https://api.github.com
+      https://*.emailjs.com;
+  "
+/>
+
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Piyush Prajapati - Portfolio</title>

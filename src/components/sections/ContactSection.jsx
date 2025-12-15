@@ -10,6 +10,7 @@ const ContactSection = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
+  // Validation Rules
   const validationSchema = Yup.object({
     user_name: Yup.string()
       .min(2, "Name must be at least 2 characters")
@@ -20,6 +21,7 @@ const ContactSection = () => {
     message: Yup.string()
       .min(10, "Message must be at least 10 characters")
       .required("Message is required"),
+    bot_check: Yup.string().max(0, "Bot detected"), 
   });
 
   const formik = useFormik({
@@ -27,16 +29,24 @@ const ContactSection = () => {
       user_name: "",
       user_email: "",
       message: "",
+      bot_check: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values, { setSubmitting, resetForm }) => {
+      
+      if (values.bot_check.length > 0) {
+        console.warn("Bot detected! Submission blocked.");
+        setSubmitting(false);
+        return;
+      }
+
       setSuccess(false);
       setError(false);
 
       emailjs
         .sendForm(
           import.meta.env.VITE_EMAILJS_SERVICE_ID,
-          import.meta.env.VITE_EMAILJS_TEMPLATE_ID, 
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
           formRef.current,
           import.meta.env.VITE_EMAILJS_PUBLIC_KEY
         )
@@ -74,7 +84,6 @@ const ContactSection = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left: Contact Info Cards */}
           <div className="lg:col-span-1 space-y-6">
             <SpotlightCard className="group">
               <div className="p-6 bg-zinc-900/50 backdrop-blur-sm rounded-xl border border-zinc-800 hover:border-sky-500/50 transition-all duration-300">
@@ -113,13 +122,26 @@ const ContactSection = () => {
             </SpotlightCard>
           </div>
 
-          {/* Right: Contact Form */}
           <div className="lg:col-span-2">
             <SpotlightCard className="h-full">
               <div className="p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-zinc-800 h-full">
                 <h3 className="text-2xl font-bold text-white mb-6">Send me a message</h3>
                 
                 <form ref={formRef} onSubmit={formik.handleSubmit} className="space-y-5" noValidate>
+                  
+                  <div className="absolute opacity-0 -z-10 select-none pointer-events-none h-0 w-0 overflow-hidden">
+                    <label htmlFor="bot_check">Do not fill this out if you are human</label>
+                    <input
+                      type="text"
+                      name="bot_check"
+                      id="bot_check"
+                      value={formik.values.bot_check}
+                      onChange={formik.handleChange}
+                      tabIndex="-1"
+                      autoComplete="off"
+                    />
+                  </div>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-medium text-zinc-300 mb-2">Your Name</label>

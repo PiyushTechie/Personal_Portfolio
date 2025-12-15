@@ -15,7 +15,6 @@ const IntroScreen = ({ onComplete }) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    // Cycle through greetings faster (every 250ms)
     const interval = setInterval(() => {
       setIndex((prev) => {
         if (prev === greetings.length - 1) {
@@ -24,12 +23,11 @@ const IntroScreen = ({ onComplete }) => {
         }
         return prev + 1;
       });
-    }, 250); // Speed of word change
+    }, 250);
 
-    // After the last word + delay, trigger the completion
     const timeout = setTimeout(() => {
       onComplete();
-    }, 2500); // Total duration of intro (2.5 - 3 seconds)
+    }, 2500);
 
     return () => {
       clearInterval(interval);

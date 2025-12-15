@@ -1,18 +1,17 @@
 import SpotlightCard from "../effects/SpotlightCard";
-import RotatingGreeting from "../effects/RotatingGreeting"; // <--- Import it here
+import RotatingGreeting from "../effects/RotatingGreeting"; 
 import { ABOUT_ME } from "../../constants";
 
 const AboutBlock = () => {
   return (
     <SpotlightCard className="col-span-1 md:col-span-2 row-span-2">
       <div className="p-8 flex flex-col justify-between h-full min-h-[300px]">
-        <div className="space-y-4"> {/* Increased space slightly */}
+        <div className="space-y-4">
           
           <div className="inline-block px-3 py-1 text-xs font-medium text-blue-400 bg-blue-500/10 rounded-full border border-blue-500/20">
             Available for work
           </div>
 
-          {/* THE NEW GREETING COMPONENT */}
           <RotatingGreeting />
 
           <h2 className="text-xl text-zinc-400">

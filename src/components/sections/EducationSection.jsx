@@ -1,7 +1,6 @@
 import React from 'react';
 import { GraduationCap, Calendar, Award, BookOpen, Star, TrendingUp } from "lucide-react";
 
-// Placeholder SpotlightCard component
 const SpotlightCard = ({ children }) => {
   return (
     <div className="relative group">
@@ -16,7 +15,8 @@ const EDUCATION = [
     school: "Thakur College of Engineering",
     year: "2024 - 2028",
     desc: "Focused on Data Structures, Algorithms, and System Design. Documentation team member at TCET Shastra Coding Club.",
-    gpa: "9.58 CGPA",
+    gpa: "9.58", 
+    gradeLabel: "CGPA",
     courses: ["OS & Networks", "DBMS", "Java OOPs", "Web Dev", "Python"]
   },
   {
@@ -25,6 +25,7 @@ const EDUCATION = [
     year: "2022 - 2024",
     desc: "Specialized in Science (PCM) + Electronics. Developed a strong foundation in mathematics and logic building.",
     gpa: "81.5%",
+    gradeLabel: "Percentage", 
     courses: ["Mathematics", "Electronics", "Physics", "Chemistry", "English"]
   },
   {
@@ -33,6 +34,7 @@ const EDUCATION = [
     year: "2012-2022",
     desc: "Completed secondary education with distinction.",
     gpa: "87.60%",
+    gradeLabel: "Percentage",
     courses: ["Mathematics", "Science", "Social Sciences"]
   }
 ];
@@ -40,12 +42,10 @@ const EDUCATION = [
 const EducationSection = () => {
   return (
     <section id="education" className="py-24 relative overflow-hidden bg-zinc-950">
-      {/* Animated Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(14,165,233,0.05)_0%,transparent_65%)] pointer-events-none"></div>
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-sky-500/20 to-transparent"></div>
 
       <div className="max-w-5xl mx-auto px-6 relative">
-        {/* Header */}
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-500/10 border border-sky-500/20 mb-6">
             <TrendingUp size={16} className="text-sky-400" />
@@ -59,21 +59,16 @@ const EducationSection = () => {
           </p>
         </div>
 
-        {/* Timeline Container */}
         <div className="relative">
-          {/* Vertical Timeline Line */}
           <div className="absolute left-8 md:left-12 top-0 bottom-0 w-0.5 bg-gradient-to-b from-sky-500 via-sky-500/30 to-transparent"></div>
 
-          {/* Education Items */}
           <div className="space-y-12">
             {EDUCATION.map((edu, index) => (
               <div key={index} className="relative pl-16 md:pl-28">
-                {/* Timeline Node */}
                 <div className="absolute left-5 md:left-10 top-6 w-4 h-4 md:w-5 md:h-5 rounded-full bg-zinc-950 border-4 border-sky-500 shadow-[0_0_20px_rgba(14,165,233,0.5)] z-10">
                   <div className="absolute -inset-2 rounded-full bg-sky-500/20 animate-pulse"></div>
                 </div>
 
-                {/* Year Badge on Timeline */}
                 <div className="absolute left-12 md:left-20 top-4 z-10">
                   <div className="flex items-center gap-1.5 px-2.5 py-1 md:px-3 md:py-1 rounded-md bg-zinc-900 border border-sky-500/30 shadow-lg">
                     <Calendar size={12} className="text-sky-400" />
@@ -81,15 +76,11 @@ const EducationSection = () => {
                   </div>
                 </div>
 
-                {/* Card */}
                 <SpotlightCard>
                   <div className="relative mt-12 bg-zinc-900/60 backdrop-blur-xl rounded-2xl border border-zinc-800 overflow-hidden hover:border-sky-500/40 transition-all duration-500 group">
-                    {/* Top Accent Bar */}
                     <div className="h-1 bg-gradient-to-r from-sky-500 via-sky-400 to-sky-500 opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
                     
-                    {/* Content */}
                     <div className="p-4 md:p-8">
-                      {/* Header Row */}
                       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-5">
                         <div className="flex items-start gap-3 md:gap-4 flex-1">
                           <div className="p-2 md:p-3 bg-gradient-to-br from-sky-500/20 to-sky-500/5 rounded-xl border border-sky-500/30 flex-shrink-0">
@@ -105,25 +96,21 @@ const EducationSection = () => {
                           </div>
                         </div>
 
-                        {/* GPA Badge */}
                         <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-sky-500/10 border border-sky-500/30 self-start">
                           <Award size={16} className="text-sky-400" />
                           <div>
-                            <div className="text-xs text-zinc-400 font-medium">GPA</div>
+                            <div className="text-xs text-zinc-400 font-medium">{edu.gradeLabel}</div>
                             <div className="text-sm font-bold text-white">{edu.gpa}</div>
                           </div>
                         </div>
                       </div>
 
-                      {/* Description */}
                       <p className="text-zinc-400 text-sm leading-relaxed mb-6 pl-0 md:pl-16">
                         {edu.desc}
                       </p>
 
-                      {/* Divider */}
                       <div className="h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent mb-6"></div>
 
-                      {/* Coursework */}
                       <div className="pl-0 md:pl-16">
                         <div className="flex items-center gap-2 mb-3">
                           <Star size={14} className="text-sky-400" />
@@ -147,7 +134,6 @@ const EducationSection = () => {
             ))}
           </div>
 
-          {/* Timeline End */}
           <div className="relative pl-20 md:pl-28 pt-8">
             <div className="absolute left-8 md:left-12 top-0 w-2 h-2 rounded-full bg-sky-500/50"></div>
           </div>

@@ -3,9 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const greetings = [
   { text: "Full Stack Developer" },
-  { text: "MERN Stack Dev"},
-  { text: "Backend Developer"},
-  { text: "SDE"},
+  { text: "MERN Stack Developer"},
+  { text: "Backend Developer"}
 ];
 
 const RotatingGreeting = () => {

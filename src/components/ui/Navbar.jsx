@@ -44,34 +44,32 @@ const Navbar = () => {
         initial={{ y: -100, x: "-50%" }}
         animate={{ y: 0, x: "-50%" }}
         transition={{ duration: 0.5 }}
-        // CHANGED: md:w-auto -> lg:w-auto
         className={`fixed left-1/2 z-50 transition-all duration-500 w-[95%] lg:w-auto ${
           isScrolled ? "top-4" : "top-5"
         }`}
       >
         <div
-          // CHANGED: md:w-auto -> lg:w-auto, md:justify-start -> lg:justify-start
           className={`relative transition-all duration-500 w-full lg:w-auto flex items-center justify-between lg:justify-start ${
             isScrolled
               ? "bg-zinc-900/80 backdrop-blur-xl border border-zinc-500/50 shadow-2xl shadow-black/20"
               : "bg-zinc-900/50 backdrop-blur-lg border border-zinc-500/30"
           } rounded-full px-6 py-3`}
         >
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-          
           <a href="/" className="relative z-10 mr-0 lg:mr-8 block shrink-0">
-            <img src="/logo1.svg" alt="Piyush Logo" className="w-32 lg:w-48 h-auto hover:opacity-80 transition-opacity" />
+            <img 
+                src="/logo1.svg" 
+                alt="Piyush Logo" 
+                className="w-32 lg:w-40 h-auto hover:opacity-80 transition-opacity" 
+            />
           </a>
 
-          {/* Desktop Navigation */}
-          {/* CHANGED: hidden md:flex -> hidden lg:flex */}
-          <ul className="hidden lg:flex items-center gap-1 relative">
+          <ul className="hidden lg:flex items-center gap-0 xl:gap-1 relative">
             {navLinks.map((link) => (
               <li key={link.name} className="relative">
                 <a
                   href={link.href}
                   onClick={() => handleLinkClick(link.href)}
-                  className={`relative z-10 block px-4 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${
+                  className={`relative z-10 block px-3 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${
                     activeSection === link.href.substring(1)
                       ? "text-white"
                       : "text-zinc-400 hover:text-white"
@@ -90,13 +88,11 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Desktop Buttons */}
-          {/* CHANGED: hidden md:flex -> hidden lg:flex */}
-          <div className="hidden lg:flex items-center gap-4 ml-2">
+          <div className="hidden lg:flex items-center gap-4 ml-4">
             <a 
               href="/resume.pdf" 
               download="Piyush_Prajapati_Resume.pdf"
-              className="flex items-center gap-1 text-zinc-400 hover:text-white transition-colors text-sm font-medium"
+              className="flex items-center gap-1 text-zinc-400 hover:text-white transition-colors text-sm font-medium whitespace-nowrap"
             >
               <Download size={16} />
               Resume
@@ -104,14 +100,12 @@ const Navbar = () => {
 
             <a
               href="#contact"
-              className="px-5 py-2 bg-sky-500 text-white text-sm font-semibold rounded-full hover:bg-sky-600 transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50"
+              className="px-5 py-2 bg-sky-500 text-white text-sm font-semibold rounded-full hover:bg-sky-600 transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 whitespace-nowrap"
             >
               Let's Talk
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          {/* CHANGED: md:hidden -> lg:hidden (Shows on Tablets now) */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden text-white p-1 hover:bg-zinc-800/50 rounded-full transition-colors"
@@ -121,7 +115,6 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -129,8 +122,7 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              // CHANGED: md:hidden -> lg:hidden
+              transition={{ duration: 0.2 }}
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
@@ -139,9 +131,9 @@ const Navbar = () => {
               initial={{ opacity: 0, y: -20, x: "-50%" }}
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: -20, x: "-50%" }}
-              transition={{ duration: 0.3 }}
-              className="fixed top-24 left-1/2 w-[90%] max-w-md bg-zinc-900 border border-zinc-800 rounded-3xl shadow-lg z-50 lg:hidden overflow-hidden"
-              >
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="fixed top-24 left-1/2 w-[90%] max-w-md bg-zinc-900 border border-zinc-800 rounded-3xl shadow-2xl z-50 lg:hidden overflow-hidden will-change-transform"
+            >
               <div className="p-6">
                 <ul className="space-y-2">
                   {navLinks.map((link, index) => (
