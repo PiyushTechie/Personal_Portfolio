@@ -65,12 +65,6 @@ The portfolio itself is a functional showcase of the skills it describes—not j
 - **Responsive Bento Grid layout** — Adapts seamlessly from mobile to 4K displays
 - **Glassmorphism cards** — Spotlight effects and gradient overlays for depth
 
-### Performance & Optimization
-- **Code splitting** — Github section lazy-loaded with React.Suspense
-- **Vite's module federation** — Optimized chunk splitting for faster initial load
-- **Hardware acceleration** — CSS transforms and will-change properties for 60fps animations
-- **Image optimization** — Served from Cloudinary with responsive sizing in project carousel
-- **Development HMR** — Hot Module Replacement for instant feedback during development
 
 ### Security & Protection
 - **Content Security Policy (CSP)** — Whitelist-based policy blocks inline scripts and suspicious resources
@@ -80,12 +74,6 @@ The portfolio itself is a functional showcase of the skills it describes—not j
 - **Input sanitization** — Formik + Yup validation prevents malicious payloads
 - **Header security** — Vercel-configured response headers prevent clickjacking and MIME sniffing
 
-### Accessibility & Semantics
-- **Semantic HTML** — Proper heading hierarchy, article/section elements, and ARIA landmarks
-- **Keyboard navigation** — All interactive elements accessible via Tab and Enter
-- **Color contrast** — Dark theme optimized for readability (zinc-950 background, zinc-100 text)
-- **Focus states** — Visible focus indicators on buttons and links
-- **Reduced motion support** — Respects prefers-reduced-motion for users with vestibular disorders
 
 ### Advanced Features
 - **Real-time GitHub contribution graph** — Fetches GitHub API data to display contribution history
@@ -144,51 +132,6 @@ Social links, copyright information, and quick navigation.
 
 ---
 
-## Project Highlights
-
-### Stayzio — Real-Estate Rental Platform
-A production-grade full-stack application demonstrating enterprise patterns and performance optimization.
-
-**Technical Achievements:**
-- **Redis caching layer** for query optimization and real-time data synchronization
-- **WebSockets + Socket.io** for live booking updates and chat functionality
-- **Cloudinary integration** for image optimization and responsive serving
-- **Rate limiters** (express-rate-limit) to prevent abuse and DDoS attacks
-- **CSRF protection** and security headers throughout
-- **MJML email templates** for responsive transactional emails
-- **Advanced search/filtering** with MongoDB aggregation pipelines
-- **REST API design** following best practices for scalability
-
-**Stack:** Node.js, Express, MongoDB, Redis, Socket.io, Cloudinary, EJS templating
-
----
-
-### Banking System — Java Enterprise Application
-Demonstrates deep Java ecosystem knowledge and ACID compliance in financial systems.
-
-**Technical Achievements:**
-- **Java Servlets & JSP** for traditional server-side rendering
-- **MySQL with transactions** for data consistency and ACID guarantees
-- **Apache Tomcat deployment** on production-grade application server
-- **Account management, fund transfers, and transaction history**
-- **Security-first design** with input validation and prepared statements
-
-**Stack:** Java, MySQL, Apache Tomcat, JSP, Servlets
-
----
-
-### Portfolio V2 — This Project
-Interactive component-driven portfolio showcasing modern frontend engineering.
-
-**Technical Achievements:**
-- **Vite-powered build system** with optimized code splitting
-- **Framer Motion animations** with performance-conscious implementation
-- **Content Security Policy** for defense-in-depth security
-- **Responsive Bento layout** with Tailwind CSS custom animations
-- **Lazy-loaded components** using React.Suspense
-- **Environment variable management** for secure API integration
-
-**Stack:** React 19, Vite, Tailwind CSS, Framer Motion, Vercel
 
 ---
 
@@ -202,7 +145,7 @@ Interactive component-driven portfolio showcasing modern frontend engineering.
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/PiyushTechie/portfolio.git
+git clone https://github.com/PiyushTechie/Personal_Portfolio.git
 cd portfolio
 ```
 
@@ -283,22 +226,12 @@ git push origin feature/component-name
 - **Vite's dynamic imports** automatically split code at component boundaries
 - Only loaded resources are shipped on initial page load
 
-### Bundle Optimization
-- **Tree-shaking** removes unused code from dependencies (especially icon libraries)
-- **CSS purging** via Tailwind ensures only used utility classes are included
-- **Minification & compression** handled automatically by Vite build process
-
 ### Animation Performance
 - **Hardware acceleration** via CSS transforms (`translate`, `scale`, `opacity`)
 - **will-change property** hints browser to optimize rendering
 - **Framer Motion's GPU acceleration** for smooth 60fps animations
 - **requestAnimationFrame** for paint-efficient transitions
 
-### SEO & Metadata
-- **Semantic HTML** with proper heading hierarchy (`<h1>` for title, `<h2>` for sections)
-- **Meta viewport** for mobile responsiveness
-- **Title tag** for browser/search engine indexing
-- **Social sharing** ready with proper Open Graph metadata (can be extended)
 
 ### Accessibility Checklist
 - Text alternatives for icons via aria-labels
@@ -318,66 +251,23 @@ git push origin feature/component-name
 
 ---
 
-## Future Enhancements
-
-### Feature Roadmap
-- **Dark/Light mode toggle** — Extend theme system beyond current dark aesthetic
-- **Blog section** — Articles on system design, performance optimization, and career insights
-- **Case studies** — Deep dives into project architecture decisions and technical challenges
-- **Interactive code sandbox** — Embedded CodePen/Replit examples showcasing snippets
-- **Testimonials section** — Social proof from collaborators and managers
-- **API analytics** — Track visitor engagement, project clicks, and contact form submissions
-
-### Technical Improvements
-- **TypeScript migration** — Gradual adoption for type safety and better IDE support
-- **Vitest + React Testing Library** — Comprehensive unit and integration tests
-- **Storybook integration** — Component library documentation and visual regression testing
-- **WebGL shaders** — Advanced visual effects with three.js or Babylon.js
-- **Service Worker** — PWA capabilities for offline-first experience
-- **Internationalization (i18n)** — Multi-language support beyond greeting sequence
-- **Analytics integration** — Vercel Web Analytics or Plausible for privacy-respecting metrics
-- **Sitemap & robots.txt** — SEO optimization for search engine crawling
-
 ### Performance Goals
 - **Lighthouse 100/100** — Perfect scores across Performance, Accessibility, Best Practices, SEO
 - **First Contentful Paint < 1s** — Optimize critical rendering path
 - **Time to Interactive < 2s** — Reduce JavaScript execution time
 - **Core Web Vitals** — LCP, FID, CLS all in green zone
 
-### Design Evolution
-- **Custom design tokens** — Centralized theme system for consistency
-- **Component library** — Reusable UI components with Storybook
-- **Micro-interactions** — Button hover states, form field animations, success feedback
-- **Motion design system** — Consistent animation timing and easing curves
-- **Accessibility audit** — Third-party accessibility testing and remediation
-
 ---
 
 ## Contact & Socials
 
-**Email:** [your.email@example.com](mailto:your.email@example.com)
+**Email:** [piyushprajapati7120@gmail.com](mailto:piyushprajapati7120@gmail.com)
 
 **GitHub:** [@PiyushTechie](https://github.com/PiyushTechie)
 
-**LinkedIn:** [Piyush Prajapati](https://linkedin.com/in/yourusername)
+**LinkedIn:** [Piyush Prajapati](www.linkedin.com/in/piyushprajapati1336)
 
-**Twitter/X:** [@PiyushTechie](https://twitter.com/yourusername)
-
-**Location:** [India]
-
----
-
-## Development Philosophy
-
-This portfolio reflects a developer who:
-
-- **Builds for users first** — Performance, accessibility, and security are non-negotiable
-- **Embraces modern tooling** — Vite, React 19, ESLint, Tailwind; avoiding legacy patterns
-- **Pays attention to detail** — Custom animations, responsive layouts, semantic markup
-- **Ships secure code** — CSP, input validation, CSRF protection, bot detection
-- **Stays curious** — Learning Java enterprise patterns, cloud architecture, system design
-- **Values clarity** — Clean code, meaningful variable names, consistent patterns
-- **Commits to craftsmanship** — Every detail matters, from button hover states to error messages
+**Location:** Mumbai, Maharashtra, India
 
 ---
 
