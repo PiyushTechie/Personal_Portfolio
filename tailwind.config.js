@@ -12,8 +12,8 @@ export default {
       },
       colors: {
         zinc: {
-          850: '#1f1f22', // Custom lighter background for cards
-          950: '#0c0c0e', // Deep background
+          850: '#1f1f22', 
+          950: '#0c0c0e', 
         }
       },
       keyframes: {
@@ -21,6 +21,10 @@ export default {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-100%)" },
         },
+      },
+      fontFamily: {
+        serif: ['"EB Garamond"', 'serif'],
+        sans: ['"DM Sans"', 'sans-serif'], 
       },
     },
   },

@@ -4,7 +4,7 @@ import { Download } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center pt-20 px-6">
+    <section id="about" className="font-serif min-h-screen flex items-center justify-center pt-20 px-6">
       <div className="max-w-6xl mx-auto w-full">
         
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
@@ -19,14 +19,14 @@ const HeroSection = () => {
               <RotatingGreeting />
             </div>
             
-            <p className="text-base md:text-lg text-zinc-200 leading-loose max-w-xl">
+            <p className="text-base md:text-2xl text-zinc-200 leading-loose max-w-xl">
               {ABOUT_ME.bio}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-2 justify-center md:justify-start items-center">
               <a 
                 href="#projects" 
-                className="px-8 py-3.5 border-2 border-zinc-700 text-white font-medium rounded-full hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-sky-500/50"
+                className="px-6 py-3.5 border-2 border-zinc-700 text-white font-medium rounded-full hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-sky-500/50"
               >
                 View My Work
               </a>
@@ -37,9 +37,8 @@ const HeroSection = () => {
                 Get In Touch
               </a>
 
-              {/* 👇 ADDED RESUME BUTTON HERE */}
               <a 
-                href="/resume.pdf" 
+                href="/Piyush_Prajapati_Resume.pdf" 
                 download="Piyush_Prajapati_Resume.pdf"
                 className="flex items-center gap-2 px-6 py-3.5 text-zinc-400 hover:text-white transition-all font-medium hover:scale-105"
               >
@@ -51,7 +50,6 @@ const HeroSection = () => {
           </div>
 
           <div className="relative flex-shrink-0">
-            {/* Glow Effect */}
             <div className="absolute -inset-6 bg-sky-500 blur-[100px] opacity-20 rounded-full"></div>
             
             <div className="relative w-70 h-70 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-zinc-800 shadow-5xl hover:border-sky-500 transition-all duration-700 hover:scale-110">

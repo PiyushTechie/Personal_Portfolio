@@ -44,7 +44,7 @@ const Navbar = () => {
         initial={{ y: -100, x: "-50%" }}
         animate={{ y: 0, x: "-50%" }}
         transition={{ duration: 0.5 }}
-        className={`fixed left-1/2 z-50 transition-all duration-500 w-[95%] lg:w-auto ${
+        className={`fixed left-1/2 z-50 transition-all duration-500 w-[95%] lg:w-fit lg:max-w-[92vw] font-['EB_Garamond',_serif] ${
           isScrolled ? "top-4" : "top-5"
         }`}
       >
@@ -53,23 +53,23 @@ const Navbar = () => {
             isScrolled
               ? "bg-zinc-900/80 backdrop-blur-xl border border-zinc-500/50 shadow-2xl shadow-black/20"
               : "bg-zinc-900/50 backdrop-blur-lg border border-zinc-500/30"
-          } rounded-full px-6 py-3`}
+          } rounded-full px-5 py-2.5 md:px-6 md:py-3`}
         >
-          <a href="/" className="relative z-10 mr-0 lg:mr-8 block shrink-0">
+          <a href="/" className="relative z-10 mr-0 lg:mr-6 block shrink-0">
             <img 
                 src="/logo1.svg" 
                 alt="Piyush Logo" 
-                className="w-32 lg:w-40 h-auto hover:opacity-80 transition-opacity" 
+                className="w-28 lg:w-36 h-auto hover:opacity-80 transition-opacity" 
             />
           </a>
 
-          <ul className="hidden lg:flex items-center gap-0 xl:gap-1 relative">
+          <ul className="hidden lg:flex items-center gap-1 xl:gap-2 relative">
             {navLinks.map((link) => (
               <li key={link.name} className="relative">
                 <a
                   href={link.href}
                   onClick={() => handleLinkClick(link.href)}
-                  className={`relative z-10 block px-3 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${
+                  className={`relative z-10 block px-3 py-2 text-[15px] font-semibold rounded-full transition-colors duration-300 ${
                     activeSection === link.href.substring(1)
                       ? "text-white"
                       : "text-zinc-400 hover:text-white"
@@ -88,24 +88,25 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <div className="hidden lg:flex items-center gap-4 ml-4">
+          <div className="hidden lg:flex items-center gap-4 ml-4 pl-4 border-l border-zinc-700/50">
             <a 
-              href="/resume.pdf" 
+              href="/Piyush_Prajapati_Resume.pdf" 
               download="Piyush_Prajapati_Resume.pdf"
-              className="flex items-center gap-1 text-zinc-400 hover:text-white transition-colors text-sm font-medium whitespace-nowrap"
+              className="flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors text-[15px] font-medium whitespace-nowrap group"
             >
-              <Download size={16} />
+              <Download size={15} className="group-hover:translate-y-0.5 transition-transform" />
               Resume
             </a>
 
             <a
               href="#contact"
-              className="px-5 py-2 bg-sky-500 text-white text-sm font-semibold rounded-full hover:bg-sky-600 transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 whitespace-nowrap"
+              className="px-5 py-2 bg-sky-500 text-white text-[15px] font-bold rounded-full hover:bg-sky-600 transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 whitespace-nowrap"
             >
               Let's Talk
             </a>
           </div>
 
+          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden text-white p-1 hover:bg-zinc-800/50 rounded-full transition-colors"
@@ -115,6 +116,7 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -132,7 +134,7 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: -20, x: "-50%" }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="fixed top-24 left-1/2 w-[90%] max-w-md bg-zinc-900 border border-zinc-800 rounded-3xl shadow-2xl z-50 lg:hidden overflow-hidden will-change-transform"
+              className="fixed top-24 left-1/2 w-[90%] max-w-md bg-zinc-900 border border-zinc-800 rounded-3xl shadow-2xl z-50 lg:hidden overflow-hidden will-change-transform font-['EB_Garamond',_serif]"
             >
               <div className="p-6">
                 <ul className="space-y-2">
@@ -146,7 +148,7 @@ const Navbar = () => {
                       <a
                         href={link.href}
                         onClick={() => handleLinkClick(link.href)}
-                        className={`block px-6 py-4 text-base font-medium rounded-2xl transition-all duration-300 ${
+                        className={`block px-6 py-4 text-lg font-semibold rounded-2xl transition-all duration-300 ${
                           activeSection === link.href.substring(1)
                             ? "text-white bg-blue-500/20 border border-blue-500/30"
                             : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
@@ -165,7 +167,7 @@ const Navbar = () => {
                     transition={{ delay: 0.3 }}
                     href="/resume.pdf"
                     download="Piyush_Prajapati_Resume.pdf"
-                    className="flex items-center justify-center gap-2 w-full px-6 py-4 border border-zinc-700 text-white text-base font-semibold rounded-2xl hover:bg-zinc-800 transition-all duration-300"
+                    className="flex items-center justify-center gap-2 w-full px-6 py-4 border border-zinc-700 text-white text-lg font-bold rounded-2xl hover:bg-zinc-800 transition-all duration-300"
                   >
                     <Download size={20} />
                     Download Resume
@@ -177,7 +179,7 @@ const Navbar = () => {
                     transition={{ delay: 0.4 }}
                     href="#contact"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-6 py-4 bg-blue-500 text-white text-center text-base font-semibold rounded-2xl hover:bg-blue-600 transition-all duration-300 shadow-lg shadow-blue-500/30"
+                    className="block px-6 py-4 bg-blue-500 text-white text-center text-lg font-bold rounded-2xl hover:bg-blue-600 transition-all duration-300 shadow-lg shadow-blue-500/30"
                   >
                     Let's Talk
                   </motion.a>

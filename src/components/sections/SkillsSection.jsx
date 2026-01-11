@@ -1,6 +1,3 @@
-import { SKILLS } from "../../constants";
-
-// Skill icons mapping
 const skillIcons = {
   "JavaScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
   "React": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
@@ -24,16 +21,15 @@ const SkillsSection = () => {
   const duplicatedSkills = [...allSkills, ...allSkills];
 
   return (
-    <section id="skills" className="py-20 bg-zinc-950/50 relative overflow-hidden">
+    <section id="skills" className="font-serif py-20 bg-zinc-950/50 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-sky-500/5 via-transparent to-sky-500/5 pointer-events-none"></div>
       
       <div className="max-w-6xl mx-auto px-6 relative">
-        {/* Section Header */}
         <div className="mb-16 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
             Technical <span className="text-sky-500">Arsenal</span>
           </h2>
-          <p className="text-zinc-400 text-lg">Technologies I work with: </p>
+          <p className="text-zinc-300 text-2xl italic">Technologies I work with: </p>
         </div>
 
         <div className="relative">
@@ -67,7 +63,7 @@ const SkillsSection = () => {
         </div>
 
         <div className="text-center mt-5">
-          <p className="text-zinc-500 text-l">And constantly learning more...</p>
+          <p className="text-zinc-300 text-lg">And constantly learning more...</p>
         </div>
       </div>
 

@@ -1,12 +1,10 @@
 export const ABOUT_ME = {
   name: "Piyush Prajapati",
   role: "Full Stack Developer",
-  // Short bio for the hero section
   bio: "I craft clean, reliable, and intelligent digital experiences. Blending Java enterprise strength with the flexibility of the MERN stack, I build systems that are fast, secure, and ready to scale.",
   
-  // LONG BIO: Use this for a "Read More" modal or a dedicated About page section
   longBio: `
-    I am a Full Stack Developer with a deep focus on performance, security, and scalability. Currently pursuing my Computer Science degree, I specialize in building robust applications using both the MERN stack (MongoDB, Express, React, Node.js) and the Java ecosystem (Servlets, JSP, MySQL).
+    I am a Full Stack Developer with a deep focus on performance, security, and scalability. Currently pursuing my Computer Science degree, I specialize in building robust applications using both the MERN stack (MongoDB, Express, React, Node.js) and expanding my expertise in Java ecosystem (Spring and SpringBoot).
 
     My journey involves solving complex problems—from optimizing database queries in my 'Stayzio' rental platform using Redis caching to implementing rigorous security protocols like Helmet and CSRF protection. I don't just write code; I architect solutions that are fast, secure, and user-centric.
 
@@ -29,7 +27,7 @@ export const PROJECTS = [
     link: "https://stayzio-app.onrender.com",
     github: "https://github.com/PiyushTechie/Stayzio_FullStack",
     images: [
-      "/project-images/stayzio1.png",  // Path relative to public folder
+      "/project-images/stayzio1.png",  
       "/project-images/stayzio2.png",
       "/project-images/stayzio3.png",
       "/project-images/stayzio4.png",
@@ -55,7 +53,6 @@ export const PROJECTS = [
   }
 ];
 
-// Categorized skills for a "Big" skills section
 export const SKILLS_CATEGORIES = {
   languages: ["JavaScript (ES6+)", "Java", "HTML5", "CSS3", "SQL"],
   frontend: ["React.js", "Tailwind CSS", "Framer Motion", "Redux", "Vite"],
@@ -64,7 +61,6 @@ export const SKILLS_CATEGORIES = {
   tools: ["Git & GitHub", "Postman", "VS Code", "IntelliJ IDEA"]
 };
 
-// Keep the simple list for the "pills" view
 export const SKILLS = [
   "React", "Node.js", "Java", "MongoDB", "MySQL", "Redis", "Express", "Tailwind CSS", "Git"
 ];

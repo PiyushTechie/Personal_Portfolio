@@ -1,153 +1,128 @@
-import { useState } from "react";
+import React from 'react';
 import SpotlightCard from "../effects/SpotlightCard";
-import { PROJECTS } from "../../constants";
-import { ArrowUpRight, Github, ExternalLink, ChevronLeft, ChevronRight, Layers } from "lucide-react";
-import ProjectImageCarousel from "./ProjectImageCarousel";
+import { Github, ExternalLink, Code2, ArrowUpRight, Terminal } from "lucide-react";
+import { PROJECTS } from "../../constants"; 
 
 const ProjectsSection = () => {
-  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
-
-  const nextProject = () => {
-    setActiveProjectIndex((prev) => (prev + 1) % PROJECTS.length);
-  };
-
-  const prevProject = () => {
-    setActiveProjectIndex((prev) => (prev - 1 + PROJECTS.length) % PROJECTS.length);
-  };
-
-  const currentProject = PROJECTS[activeProjectIndex];
-
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_70%)]"></div>
-      
+    <section id="projects" className="py-24 relative overflow-hidden font-['EB_Garamond',_serif]">
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_70%)] pointer-events-none"></div>
+
       <div className="max-w-7xl mx-auto px-6 relative">
-        <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
-              Featured <span className="bg-gradient-to-r from-sky-400 to-blue-600 bg-clip-text text-transparent">Projects</span>
-            </h2>
-            <p className="text-zinc-400 text-lg">Selected works from my portfolio</p>
+        
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 mb-4 font-sans">
+            <Code2 size={14} className="text-sky-400" />
+            <span className="text-xs font-bold text-sky-400 uppercase tracking-wide">My Work</span>
           </div>
-          
-          <div className="flex items-center gap-4">
-             <div className="flex gap-3">
-                <button 
-                  onClick={prevProject}
-                  className="p-3 rounded-full bg-zinc-800/50 hover:bg-zinc-700 text-white transition-all border border-zinc-700 hover:scale-110"
-                >
-                  <ChevronLeft size={22} />
-                </button>
-                <button 
-                  onClick={nextProject}
-                  className="p-3 rounded-full bg-zinc-800/50 hover:bg-zinc-700 text-white transition-all border border-zinc-700 hover:scale-110"
-                >
-                  <ChevronRight size={22} />
-                </button>
-             </div>
-          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+            Featured <span className="text-sky-500">Projects</span>
+          </h2>
+          <p className="text-zinc-300 text-lg md:text-2xl max-w-2xl mx-auto italic">
+            Selected works from my portfolio.
+          </p>
         </div>
 
-        <div className="relative">
-          <SpotlightCard className="bg-zinc-900/40 border-zinc-800/50 overflow-hidden rounded-3xl">
-            <div className="grid lg:grid-cols-2 gap-0">
-              
-              <div className="relative h-[400px] lg:h-auto overflow-hidden group bg-black flex items-center justify-center">
-                {currentProject?.images && currentProject.images.length > 0 ? (
-                    <div className="w-full h-full">
-                        <ProjectImageCarousel 
-                            key={activeProjectIndex} 
-                            images={currentProject.images} 
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {PROJECTS.map((project, index) => {
+            
+            const imageUrl = (project.images && project.images.length > 0) 
+              ? project.images[0] 
+              : project.image 
+                ? project.image 
+                : null;
+
+            const tagsList = project.tags || project.tech || [];
+
+            return (
+              <SpotlightCard key={index} className="h-full">
+                <div className="h-full flex flex-col bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-zinc-800 hover:border-sky-500/50 transition-all duration-300 group overflow-hidden">
+                  
+                  <div className="relative h-52 overflow-hidden bg-zinc-950 border-b border-white/5 shrink-0">
+                    
+                    {imageUrl ? (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent z-10 opacity-60"></div>
+                        <img 
+                          src={imageUrl} 
+                          alt={project.title} 
+                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
                         />
+                      </>
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-zinc-900/80 group-hover:bg-zinc-900 transition-colors">
+                        <div className="text-center opacity-30 group-hover:opacity-50 transition-opacity">
+                          <Terminal size={48} className="mx-auto mb-2 text-sky-500" />
+                          <span className="text-sm font-mono text-sky-400 font-bold uppercase tracking-widest">
+                            Code Project
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                    
+                    <div className="absolute top-4 right-4 z-20 w-8 h-8 bg-zinc-950/60 backdrop-blur flex items-center justify-center rounded-full border border-white/10 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                      <ArrowUpRight size={14} className="text-white" />
                     </div>
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-zinc-900">
-                    <span className="text-8xl text-zinc-800 font-bold opacity-50">Code</span>
                   </div>
-                )}
-              </div>
 
-              
-              <div className="p-8 lg:p-12 flex flex-col h-full bg-zinc-900/20 backdrop-blur-sm border-t lg:border-t-0 lg:border-l border-white/5">
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-8">
-                    <div className="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 font-bold text-lg">
-                       0{activeProjectIndex + 1}
-                    </div>
-                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-sky-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-zinc-400 text-lg leading-relaxed mb-6">
+                      {project.desc}
+                    </p>
 
-                  <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">
-                    {currentProject?.title}
-                  </h3>
-                  
-                  <p className="text-zinc-400 text-base leading-relaxed mb-8">
-                    {currentProject?.desc}
-                  </p>
-
-                  
-                  <div className="mb-8">
-                    <div className="flex items-center gap-2 mb-4 text-sm font-semibold text-zinc-300 uppercase tracking-wider">
-                        <Layers size={16} className="text-sky-500" />
-                        <span>Technologies Used</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                       {currentProject?.tags?.map(tag => (
+                    <div className="mb-6 mt-auto">
+                      <div className="flex flex-wrap gap-2 font-sans">
+                        {tagsList.map((tag) => (
                           <span 
                             key={tag} 
-                            className="text-xs font-medium px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 border border-white/10 transition-colors"
+                            className="px-2.5 py-1 text-xs font-semibold bg-sky-500/10 text-sky-300 border border-sky-500/20 rounded-md"
                           >
                             {tag}
                           </span>
-                       ))}
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-4 pt-4 border-t border-zinc-800 font-sans mt-auto">
+                      {project.github && project.github !== "#" && (
+                          <a 
+                          href={project.github} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-sm font-semibold"
+                          >
+                          <Github size={18} />
+                          Source Code
+                          </a>
+                      )}
+                      
+                      {project.github && project.github !== "#" && project.link && project.link !== "#" && (
+                        <div className="w-px h-4 bg-zinc-800"></div>
+                      )}
+
+                      {project.link && project.link !== "#" && (
+                          <a 
+                          href={project.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-sky-400 hover:text-sky-300 transition-colors text-sm font-semibold"
+                          >
+                          <ExternalLink size={18} />
+                          Live Demo
+                          </a>
+                      )}
                     </div>
                   </div>
+
                 </div>
-
-                <div className="flex flex-col gap-6 mt-auto">
-                  <div className="flex gap-4">
-                    {currentProject?.link && (
-                      <a 
-                        href={currentProject.link} 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-sky-500/25 hover:-translate-y-0.5"
-                      >
-                        <ExternalLink size={20} />
-                        Live Demo
-                      </a>
-                    )}
-                    
-                    {currentProject?.github && (
-                      <a 
-                        href={currentProject.github} 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-xl transition-all border border-white/10 hover:-translate-y-0.5"
-                      >
-                        <Github size={20} />
-                        Code
-                      </a>
-                    )}
-                  </div>
-
-                  <div className="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
-                    <div 
-                      className="h-full bg-gradient-to-r from-sky-400 to-blue-600 transition-all duration-500 ease-out"
-                      style={{ width: `${((activeProjectIndex + 1) / PROJECTS.length) * 100}%` }}
-                    />
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </SpotlightCard>
-        </div>
-
-        <div className="text-center mt-16">
-          <a href="https://github.com/PiyushTechie?tab=repositories" className="inline-flex items-center gap-2 text-zinc-400 hover:text-sky-400 transition-colors font-medium group text-lg">
-            View Full Project Archive
-            <ArrowUpRight size={20} className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-          </a>
+              </SpotlightCard>
+            );
+          })}
         </div>
 
       </div>
