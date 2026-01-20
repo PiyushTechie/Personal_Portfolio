@@ -11,6 +11,7 @@ import Footer from "./components/ui/Footer";
 import EducationSection from "./components/sections/EducationSection";
 import TechMarquee from "./components/ui/TechMarquee";
 import { lazy, Suspense } from "react";
+import { Analytics } from "@vercel/analytics/next"
 const Github = lazy(() => import("./components/sections/Github"));
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -40,6 +41,7 @@ function App() {
           <ContactSection />
           <TechMarquee/>
           <Footer/>
+          <Analytics/>
         </div>
       )}
     </div>
