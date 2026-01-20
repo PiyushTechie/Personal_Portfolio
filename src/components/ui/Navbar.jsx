@@ -106,7 +106,6 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden text-white p-1 hover:bg-zinc-800/50 rounded-full transition-colors"
@@ -116,7 +115,6 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>

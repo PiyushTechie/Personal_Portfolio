@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
-import SpotlightCard from "../effects/SpotlightCard";
+import SpotlightCard from "../effects/SpotlightCard"; 
+import { Button } from "../ui/moving-border";
 import { Mail, Send, MapPin, Phone, CheckCircle, AlertCircle } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { useFormik } from "formik";
@@ -11,34 +12,20 @@ const ContactSection = () => {
   const [error, setError] = useState(false);
 
   const validationSchema = Yup.object({
-    user_name: Yup.string()
-      .min(2, "Name must be at least 2 characters")
-      .required("Name is required"),
-    user_email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    message: Yup.string()
-      .min(10, "Message must be at least 10 characters")
-      .required("Message is required"),
-    bot_check: Yup.string().max(0, "Bot detected"), 
+    user_name: Yup.string().min(2, "Name must be at least 2 characters").required("Name is required"),
+    user_email: Yup.string().email("Invalid email address").required("Email is required"),
+    message: Yup.string().min(10, "Message must be at least 10 characters").required("Message is required"),
+    bot_check: Yup.string().max(0, "Bot detected"),
   });
 
   const formik = useFormik({
-    initialValues: {
-      user_name: "",
-      user_email: "",
-      message: "",
-      bot_check: "",
-    },
+    initialValues: { user_name: "", user_email: "", message: "", bot_check: "" },
     validationSchema: validationSchema,
     onSubmit: (values, { setSubmitting, resetForm }) => {
-      
       if (values.bot_check.length > 0) {
-        console.warn("Bot detected! Submission blocked.");
         setSubmitting(false);
         return;
       }
-
       setSuccess(false);
       setError(false);
 
@@ -49,8 +36,7 @@ const ContactSection = () => {
           formRef.current,
           import.meta.env.VITE_EMAILJS_PUBLIC_KEY
         )
-        .then(
-          () => {
+        .then(() => {
             setSuccess(true);
             resetForm();
             setTimeout(() => setSuccess(false), 5000);
@@ -60,9 +46,7 @@ const ContactSection = () => {
             setError(true);
           }
         )
-        .finally(() => {
-          setSubmitting(false);
-        });
+        .finally(() => setSubmitting(false));
     },
   });
 
@@ -70,9 +54,8 @@ const ContactSection = () => {
     <section id="contact" className="py-20 pb-32 relative overflow-hidden font-['EB_Garamond',_serif]">
       <div className="absolute inset-0 bg-gradient-to-t from-sky-500/5 via-transparent to-transparent pointer-events-none"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-500 rounded-full blur-[150px] opacity-10 pointer-events-none"></div>
-      
+
       <div className="max-w-6xl mx-auto px-6 relative">
-        
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
             Get In <span className="text-sky-500">Touch</span>
@@ -83,6 +66,7 @@ const ContactSection = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
           <div className="lg:col-span-1 space-y-6">
             <SpotlightCard className="group">
               <div className="p-6 bg-zinc-900/50 backdrop-blur-sm rounded-xl border border-zinc-800 hover:border-sky-500/50 transition-all duration-300">
@@ -102,9 +86,7 @@ const ContactSection = () => {
                   <MapPin className="text-sky-400" size={24} />
                 </div>
                 <h3 className="text-white text-xl font-bold mb-2">Location</h3>
-                <p className="text-zinc-300 text-lg">
-                  Mumbai, Maharashtra, India
-                </p>
+                <p className="text-zinc-300 text-lg">Mumbai, Maharashtra, India</p>
               </div>
             </SpotlightCard>
 
@@ -125,65 +107,61 @@ const ContactSection = () => {
             <SpotlightCard className="h-full">
               <div className="p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-zinc-800 h-full">
                 <h3 className="text-3xl font-bold text-white mb-6">Send me a message</h3>
-                
+
                 <form ref={formRef} onSubmit={formik.handleSubmit} className="space-y-6" noValidate>
-                  
                   <div className="absolute opacity-0 -z-10 select-none pointer-events-none h-0 w-0 overflow-hidden">
                     <label htmlFor="bot_check">Do not fill this out if you are human</label>
-                    <input
-                      type="text"
-                      name="bot_check"
-                      id="bot_check"
-                      value={formik.values.bot_check}
-                      onChange={formik.handleChange}
-                      tabIndex="-1"
-                      autoComplete="off"
-                    />
+                    <input type="text" name="bot_check" id="bot_check" value={formik.values.bot_check} onChange={formik.handleChange} tabIndex="-1" autoComplete="off" />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
                     <div>
                       <label className="block text-lg font-medium text-zinc-300 mb-2">Your Name</label>
-                      <input 
-                        type="text"
-                        name="user_name"
-                        placeholder="Enter your name here"
-                        value={formik.values.user_name}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        className={`w-full bg-zinc-950/50 border rounded-xl px-4 py-3.5 text-white placeholder:text-zinc-600 font-sans focus:outline-none focus:ring-1 transition-all
-                          ${formik.touched.user_name && formik.errors.user_name 
-                            ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50" 
-                            : "border-zinc-800 focus:border-blue-500 focus:ring-blue-500/50"
-                          }`}
-                      />
+                      <Button
+                        as="div"
+                        borderRadius="0.75rem" 
+                        containerClassName="w-full h-14" 
+                        className="bg-zinc-950 border-zinc-800 p-0" 
+                      >
+                        <input 
+                          type="text"
+                          name="user_name"
+                          placeholder="Elon Musk"
+                          value={formik.values.user_name}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          className="w-full h-full bg-transparent border-none text-white px-4 font-sans focus:ring-0 placeholder:text-zinc-600 focus:outline-none"
+                        />
+                      </Button>
                       {formik.touched.user_name && formik.errors.user_name && (
                         <p className="text-red-400 text-sm mt-1.5 ml-1 flex items-center gap-1 font-sans">
-                          <AlertCircle size={14} />
-                          {formik.errors.user_name}
+                          <AlertCircle size={14} /> {formik.errors.user_name}
                         </p>
                       )}
                     </div>
-                    
+
                     <div>
                       <label className="block text-lg font-medium text-zinc-300 mb-2">Your Email</label>
-                      <input 
-                        type="email"
-                        name="user_email"
-                        placeholder="example@gmail.com"
-                        value={formik.values.user_email}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        className={`w-full bg-zinc-950/50 border rounded-xl px-4 py-3.5 text-white placeholder:text-zinc-600 font-sans focus:outline-none focus:ring-1 transition-all
-                          ${formik.touched.user_email && formik.errors.user_email 
-                            ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50" 
-                            : "border-zinc-800 focus:border-blue-500 focus:ring-blue-500/50"
-                          }`}
-                      />
+                      <Button
+                        as="div"
+                        borderRadius="0.75rem"
+                        containerClassName="w-full h-14"
+                        className="bg-zinc-950 border-zinc-800 p-0"
+                      >
+                        <input 
+                          type="email"
+                          name="user_email"
+                          placeholder="example@gmail.com"
+                          value={formik.values.user_email}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          className="w-full h-full bg-transparent border-none text-white px-4 font-sans focus:ring-0 placeholder:text-zinc-600 focus:outline-none"
+                        />
+                      </Button>
                       {formik.touched.user_email && formik.errors.user_email && (
                         <p className="text-red-400 text-sm mt-1.5 ml-1 flex items-center gap-1 font-sans">
-                          <AlertCircle size={14} />
-                          {formik.errors.user_email}
+                          <AlertCircle size={14} /> {formik.errors.user_email}
                         </p>
                       )}
                     </div>
@@ -191,66 +169,48 @@ const ContactSection = () => {
 
                   <div>
                     <label className="block text-lg font-medium text-zinc-300 mb-2">Your Message</label>
-                    <textarea 
-                      name="message"
-                      rows={6}
-                      placeholder="What's on your mind?..."
-                      value={formik.values.message}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      className={`w-full bg-zinc-950/50 border rounded-xl px-4 py-3.5 text-white placeholder:text-zinc-600 font-sans focus:outline-none focus:ring-1 transition-all resize-none
-                        ${formik.touched.message && formik.errors.message 
-                          ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50" 
-                          : "border-zinc-800 focus:border-blue-500 focus:ring-blue-500/50"
-                        }`}
-                    />
+                    <Button
+                      as="div"
+                      borderRadius="0.75rem"
+                      containerClassName="w-full h-40" 
+                      className="bg-zinc-950 border-zinc-800 p-0 items-start"
+                    >
+                      <textarea
+                        name="message"
+                        rows={6}
+                        placeholder="What's on your mind?..."
+                        value={formik.values.message}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        className={`w-full h-full bg-transparent border-none rounded-xl px-4 py-3.5 text-white placeholder:text-zinc-600 font-sans focus:outline-none focus:ring-0 transition-all resize-none`}
+                      />
+                    </Button>
                     {formik.touched.message && formik.errors.message && (
                       <p className="text-red-400 text-sm mt-1.5 ml-1 flex items-center gap-1 font-sans">
-                        <AlertCircle size={14} />
-                        {formik.errors.message}
+                        <AlertCircle size={14} /> {formik.errors.message}
                       </p>
                     )}
                   </div>
 
-                  <button 
+                  <button
                     type="submit"
                     disabled={formik.isSubmitting}
                     className={`w-full font-bold text-lg py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group font-sans
-                      ${success 
-                        ? 'bg-green-500/20 text-green-400 border border-green-500/50' 
-                        : 'bg-sky-500 text-white hover:bg-sky-600 hover:scale-[1.01] hover:shadow-lg hover:shadow-sky-500/50'
-                      }
-                      disabled:opacity-50 disabled:cursor-not-allowed
-                    `}
+                      ${success ? 'bg-green-500/20 text-green-400 border border-green-500/50' : 'bg-sky-500 text-white hover:bg-sky-600 hover:scale-[1.01] hover:shadow-lg hover:shadow-sky-500/50'}
+                      disabled:opacity-50 disabled:cursor-not-allowed`}
                   >
                     {formik.isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        Sending...
-                      </>
+                      <> <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> Sending... </>
                     ) : success ? (
-                      <>
-                        Message Sent!
-                        <CheckCircle size={20} />
-                      </>
+                      <> Message Sent! <CheckCircle size={20} /> </>
                     ) : error ? (
-                      <>
-                        Failed to Send
-                        <AlertCircle size={20} />
-                      </>
+                      <> Failed to Send <AlertCircle size={20} /> </>
                     ) : (
-                      <>
-                        Send Message
-                        <Send size={20} className="group-hover:translate-x-1 transition-transform" />
-                      </>
+                      <> Send Message <Send size={20} className="group-hover:translate-x-1 transition-transform" /> </>
                     )}
                   </button>
 
-                  {error && (
-                    <p className="text-red-400 text-sm text-center font-sans">
-                      Something went wrong. Please try again later.
-                    </p>
-                  )}
+                  {error && <p className="text-red-400 text-sm text-center font-sans">Something went wrong. Please try again later.</p>}
                 </form>
               </div>
             </SpotlightCard>

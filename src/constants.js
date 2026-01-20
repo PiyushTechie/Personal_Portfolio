@@ -15,7 +15,7 @@ export const ABOUT_ME = {
     github: "https://github.com/yourusername",
     linkedin: "https://linkedin.com/in/yourusername",
     twitter: "https://twitter.com/yourusername",
-    email: "your.email@example.com"
+    email: ""
   }
 };
 
@@ -41,15 +41,15 @@ export const PROJECTS = [
     title: "Banking System",
     desc: "A secure, transactional banking application built with Java core technologies. Handles account management, fund transfers, and transaction history with strict ACID compliance via MySQL.",
     tags: ["Java Servlets", "JSP", "MySQL", "Apache Tomcat"],
-    link: "#",
+    link: "http://banking-app-z4se.onrender.com",
     github: "https://github.com/PiyushTechie/Banking-Management-System-JAVA"
   },
   {
     title: "Portfolio V2",
     desc: "An interactive, component-driven portfolio featuring a custom Bento Grid layout, hardware-accelerated animations, and a responsive glassmorphism design system.",
     tech: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
-    link: "#",
-    github: "#"
+    link: "https://piyush-prajapati.vercel.app",
+    github: "https://github.com/PiyushTechie/Personal_Portfolio"
   }
 ];
 
