@@ -1,7 +1,60 @@
 import React, { useState } from "react";
 import { cn } from "../../utils/utils";
-import { Github, ExternalLink, ArrowUpRight, Terminal } from "lucide-react";
-import SpotlightCard from "../effects/SpotlightCard"; 
+import { Github, ExternalLink, ArrowUpRight, Terminal, Plus, Layers } from "lucide-react";
+import SpotlightCard from "../effects/SpotlightCard";
+
+const techLogos = {
+  "React": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "React.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "Next.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+  "nextjs": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+  "Tailwind CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+  "Tailwind": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+  "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  "Node": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  "MongoDB": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  "Express": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+  "Express.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+  "JavaScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  "TypeScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  "Framer Motion": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/framermotion/framermotion-original.svg",
+  "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  "Python": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  "MySQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  "PostgreSQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  "HTML": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+  "CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+  "Redis": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
+  "Docker": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+  "AWS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+  "Firebase": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+  "Git": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  "Figma": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+  "GraphQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
+  "Redux": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
+  "Sass": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg",
+  "Vue.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+  "Angular": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+  "C++": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+  "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
+  "Go": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg",
+  "Kotlin": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
+  "Swift": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
+  "Rust": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg",
+  "PHP": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+  "Laravel": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg",
+  "Django": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
+  "Flask": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
+  "Spring": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
+  "Kubernetes": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+  "Jenkins": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg",
+  "Linux": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+  "Nginx": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
+  "Jira": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg",
+  "Bootstrap": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg",
+  "Material UI": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg",
+  "MUI": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg",
+};
 
 export const Card = React.memo(
   ({
@@ -10,6 +63,8 @@ export const Card = React.memo(
     hovered,
     setHovered,
   }) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+
     const imageUrl =
       card.images && card.images.length > 0
         ? card.images[0]
@@ -18,6 +73,13 @@ export const Card = React.memo(
         : null;
 
     const tagsList = card.tags || card.tech || [];
+
+    const DISPLAY_LIMIT = 7;
+    const showExpandButton = tagsList.length > DISPLAY_LIMIT && !isExpanded;
+    const displayedTags = isExpanded 
+      ? tagsList 
+      : tagsList.slice(0, DISPLAY_LIMIT - (showExpandButton ? 1 : 0));
+    const remainingCount = tagsList.length - displayedTags.length;
 
     return (
       <div
@@ -67,15 +129,59 @@ export const Card = React.memo(
                     </p>
 
                     <div className="mb-6 mt-auto">
-                        <div className="flex flex-wrap gap-2 font-sans">
-                        {tagsList.map((tag) => (
-                            <span 
-                            key={tag} 
-                            className="px-2.5 py-1 text-xs font-semibold bg-sky-500/10 text-sky-300 border border-sky-500/20 rounded-md"
-                            >
-                            {tag}
+                        
+                        <div className="flex items-center gap-2 mb-3">
+                            <Layers size={14} className="text-zinc-500" />
+                            <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider font-sans">
+                                Technologies Used
                             </span>
-                        ))}
+                        </div>
+
+                        <div className="flex flex-wrap items-center gap-2 font-sans relative transition-all duration-300">
+                            {displayedTags.map((tag) => {
+                                const iconUrl = techLogos[tag] || techLogos[tag.split(" ")[0]];
+                                
+                                if (iconUrl) {
+                                    return (
+                                        <div 
+                                            key={tag} 
+                                            className="relative group/icon"
+                                            title={tag}
+                                        >
+                                            <div className="w-9 h-9 rounded-full bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center p-1.5 shadow-sm hover:scale-110 hover:border-sky-500/30 hover:bg-zinc-800 transition-all duration-300 cursor-default">
+                                                <img 
+                                                    src={iconUrl} 
+                                                    alt={tag} 
+                                                    className="w-full h-full object-contain grayscale-[0.3] group-hover/icon:grayscale-0 transition-all" 
+                                                />
+                                            </div>
+                                        </div>
+                                    );
+                                } else {
+                                    return (
+                                        <span 
+                                            key={tag} 
+                                            className="px-2.5 py-1 text-xs font-semibold bg-sky-500/10 text-sky-300 border border-sky-500/20 rounded-md"
+                                        >
+                                            {tag}
+                                        </span>
+                                    );
+                                }
+                            })}
+
+                            {showExpandButton && (
+                                <button 
+                                    onClick={(e) => {
+                                      e.preventDefault(); 
+                                      setIsExpanded(true);
+                                    }}
+                                    className="w-9 h-9 rounded-full bg-sky-500/20 border border-sky-500/30 flex items-center justify-center text-sky-400 hover:bg-sky-500/30 hover:border-sky-500/50 transition-all duration-300 hover:scale-110 group/expand"
+                                    title="Show all technologies"
+                                >
+                                    <Plus size={14} className="group-hover/expand:rotate-90 transition-transform duration-300" />
+                                    <span className="text-[10px] font-bold ml-0.5">{remainingCount}</span>
+                                </button>
+                            )}
                         </div>
                     </div>
 
