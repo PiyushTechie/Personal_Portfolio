@@ -1,24 +1,3 @@
-export const ABOUT_ME = {
-  name: "Piyush Prajapati",
-  role: "Full Stack Developer",
-  bio: "I craft clean, reliable, and intelligent digital experiences. Blending Java enterprise strength with the flexibility of the MERN stack, I build systems that are fast, secure, and ready to scale.",
-  
-  longBio: `
-    I am a Full Stack Developer with a deep focus on performance, security, and scalability. Currently pursuing my Computer Science degree, I specialize in building robust applications using both the MERN stack (MongoDB, Express, React, Node.js) and expanding my expertise in Java ecosystem (Spring and SpringBoot).
-
-    My journey involves solving complex problems—from optimizing database queries in my 'Stayzio' rental platform using Redis caching to implementing rigorous security protocols like Helmet and CSRF protection. I don't just write code; I architect solutions that are fast, secure, and user-centric.
-
-    When I'm not developing web applications, I am refining my problem-solving skills through Data Structures & Algorithms or exploring the latest trends in cloud architecture and system design.
-  `,
-  
-  socials: {
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
-    twitter: "https://twitter.com/yourusername",
-    email: ""
-  }
-};
-
 export const PROJECTS = [
   {
     title: "Stayzio",
